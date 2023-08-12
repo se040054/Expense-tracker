@@ -159,3 +159,25 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.back-link {
+  position: fixed;
+  top: 50%;
+  left:100px;
+  transform: translateY(-50%);
+}
+
+.back {
+  display: inline-block;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #1b72cf;
+  color: white;
+  text-decoration: none;
+  border-radius: 20%;
+  transition: background-color 0.3s;
+}
+
+.back:hover {
+  background-color: #16487d;
+}

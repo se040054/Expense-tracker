@@ -43,5 +43,35 @@ router.post('/create',async(req,res)=>{
   return res.redirect('/index')
 })
 
+router.get('/:id/edit', async (req,res)=>{
+  const id=req.params.id
+  const expense =await Expenses.findByPk(id,{
+    attributes: [
+      "id",
+      "name",
+      [sequelize.fn("DATE", sequelize.col("date")), "date"],
+      "amount",
+      "categoryId",
+    ],
+    raw: true,
+  });
+  return res.render('edit',{expense,id})
+})
+
+router.put('/:id/edit',async(req,res)=>{
+  const id=req.params.id
+  const {name,date,categoryId,amount}=req.body
+  await Expenses.update({name,date,categoryId,amount},{where:{id}})
+  return res.redirect('/index')
+
+})
+
+router.delete('/:id/delete',async(req,res)=>{
+  const id=req.params.id
+  await Expenses.destroy({where:{id}})
+  return res.redirect('/index')
+})
+
 
 module.exports = router;
+
