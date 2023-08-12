@@ -1,12 +1,74 @@
-body,
-ul {
+body {
   margin: 0;
-  padding: 0;
+  /* 清除預設的邊距 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 將內容水平置中 */
 }
 
-/* Basic styling */
 nav {
   background-color: #333;
   color: white;
-  padding: 20px;
+  padding:20px;
+  width: 100%;
+  text-align:center;
+  font-size: 30px;
+}
+
+
+
+.expenses-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 將項目水平置中 */
+}
+
+.expense {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+  /* 設定項目之間的垂直間距 */
+  width:100%;
+  /* 控制項目的寬度 */
+  max-width:1500px;
+  /* 設定最大寬度，以防項目過寬 */
+}
+
+.expense p {
+  margin: 0;
+  margin-left: 30px;
+  font-size: 22px;
+}
+
+.expense a {
+  margin-left:30px;
+  /* 設定左邊間距 */
+  font-size: 22px;
+}
+
+.totalAmount{
+  font-size: 60px;
+  color: coral;
+}
+
+.totalAmount-container {
+  display: flex;
+  align-items: center;
+  /* 垂直居中內容 */
+}
+
+.totalAmount-container h3 {
+  margin-right: 10px;
+  /* 設定 h3 標題右側間距 */
+  margin-top: 0;
+}
+
+.totalAmount-container p {
+  margin-left: 10px;
+  /* 設定 p 元素左側間距 */
+  margin-bottom: 5px  ;
 }
