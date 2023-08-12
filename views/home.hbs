@@ -1,13 +1,24 @@
 <div class="expenses-container">
+  
+  <label for=" " style="margin:30px">選擇分類
+  <select name="select_category" id="select_category">
+    <option value="1">居家</option>
+    <option value="2">交通</option>
+    <option value="3">休閒</option>
+    <option value="4">飲食</option>
+    <option value="5">其他</option>
+  </select>
+  </label>
 
   <div class="totalAmount-container">
     <h3> 總金額 : </h3>
     <p class="totalAmount">{{totalAmount}}</p>
   </div>
 
-
   {{#each expenses as |expense|}}
     <div class="expense">
+      <i class="{{expense.categoryIMG}}"></i>
+      <p>{{expense.categoryId}}</p>
       <p>{{expense.name}}</p>
       <p>{{expense.date}}</p>
       <p>{{expense.amount}}</p>
@@ -17,7 +28,8 @@
     </div>
 
   {{/each}}
-
+  <i ></i>
+  
   <button>新增支出</button>
 
 </div>

@@ -12,6 +12,7 @@ module.exports = {
            amount: 200,
            createdAt: new Date(),
            updatedAt: new Date(),
+           categoryId: 1,
          },
          {
            name: "早餐",
@@ -19,6 +20,7 @@ module.exports = {
            amount: 100,
            createdAt: new Date(),
            updatedAt: new Date(),
+           categoryId: 4,
          },
        ],
        {}
