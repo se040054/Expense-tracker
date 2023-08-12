@@ -5,13 +5,13 @@
 
   <form action="/index/create" method="post">
     <label for="name">名稱
-      <input type="text" name="name" id="name" />
+      <input type="text" name="name" id="name"  required/>
     </label>
     <label for="date">日期
-      <input type="date" name="date" id="date" />
+      <input type="date" name="date" id="date" required/>
     </label>
     <label for="categoryId">類別
-      <select name="categoryId" id="categoryId">
+      <select name="categoryId" id="categoryId" required>
         <option value="1">居家</option>
         <option value="2">交通</option>
         <option value="3">休閒</option>
@@ -20,7 +20,7 @@
       </select>
     </label>
     <label for="amount">金額
-      <input type="number" name="amount" id="amount">
+      <input type="number" name="amount" id="amount" required>
     </label>
     <button type="submit"> 送出 </button>
   </form>

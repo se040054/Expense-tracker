@@ -181,3 +181,75 @@ button:hover {
 .back:hover {
   background-color: #16487d;
 }
+
+.edit-container ,.create-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.edit-container form {
+  display: grid;
+  grid-template-columns: max-content auto;
+  row-gap: 15px;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+}
+
+.edit-container label {
+  grid-column: 1 / 2;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.edit-container select,
+.edit-container input[type="number"],
+.edit-container input[type="text"],
+.edit-container input[type="date"] {
+  grid-column: 2 / 3;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-container button {
+  grid-column: span 2;
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.edit-container button:hover {
+  background-color: darkorange;
+}
+
+#categoryIdValue {
+  display: none;
+}
+
+.footer {
+  height: 60px;
+  width: 100%;
+  background-color: #f2f2f2;
+  box-shadow: 3px -2px 4px rgba(0, 0, 0, 0.1);
+  margin-top:60px ;
+}
