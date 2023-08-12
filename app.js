@@ -4,7 +4,6 @@ const { engine } = require("express-handlebars");
 const app = express();
 const router = require('./routers');
 const db = require("./models");
-const Todo = db.Todo;
 const port=3000
 
 app.engine(".hbs", engine({ extname: ".hbs" }));

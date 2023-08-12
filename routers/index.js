@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/',(req,res)=>{
-  res.send('Here  is index page ')
+  res.render('home')
 })
 
 
