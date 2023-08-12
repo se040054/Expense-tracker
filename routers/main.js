@@ -2,10 +2,11 @@
 const express = require("express");
 const router = express.Router();
 const index = require('./index')
+
 router.use('/index',index)
 
 router.get('/',(req,res)=>{
-  res.redirect('/index')
+  return res.redirect('/index')
 })
 
 

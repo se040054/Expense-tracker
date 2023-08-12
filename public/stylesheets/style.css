@@ -76,14 +76,6 @@ nav {
   margin-bottom: 5px;
 }
 
-#select_category {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
 .button-container {
   display: flex;
   justify-content: center;
@@ -99,7 +91,7 @@ button {
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
-  border-radius:5px ;
+  border-radius: 5px;
 }
 
 button:hover {
@@ -112,4 +104,58 @@ button:hover {
 
 .expense:nth-child(odd) {
   background-color: white;
+}
+
+.create-container form {
+  display: grid;
+  grid-template-columns: max-content auto;
+  row-gap: 15px;
+  align-items: center;
+  text-align: left;
+}
+
+.create-container label {
+  grid-column: 1 / 2;
+  margin-right: 10px;
+}
+
+.create-container select,
+.create-container input[type="number"] {
+  grid-column: 2 / 3;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-container button {
+  grid-column: span 2;
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-container button:hover {
+  background-color: darkorange;
+}
+
+/* 新增以下樣式來調整類別和金額的位置 */
+.create-container label[for="categoryId"],
+.create-container label[for="amount"] {
+  grid-column: 1 / 2;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.create-container select[name="categoryId"],
+.create-container input[name="amount"] {
+  grid-column: 2 / 3;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }

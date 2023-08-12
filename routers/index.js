@@ -4,7 +4,6 @@ const router = express.Router();
 const db =require('../models')
 const Expenses=db.Expenses
 const sequelize = require("sequelize");
-const category = require("../models/category");
 
 const CATEGORYIMG = {
   1: "fa-solid fa-house",
@@ -28,11 +27,21 @@ router.get('/',async (req,res)=>{
   expenses.forEach(expense => {
     expense.categoryIMG = CATEGORYIMG[expense.categoryId];
   });
-  console.log(expenses)
   const totalAmount = await Expenses.sum('amount')
   return res.render('home',{expenses,totalAmount})
 })
 
+
+router.get('/create',(req,res)=>{
+  return res.render('create')
+})
+
+router.post('/create',async(req,res)=>{
+  const {name,date,categoryId,amount}=req.body
+  console.log(name,date,categoryId,amount)
+  await Expenses.create({name,date,categoryId,amount})
+  return res.redirect('/index')
+})
 
 
 module.exports = router;
