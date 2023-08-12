@@ -23,7 +23,10 @@
       <p>{{expense.date}}</p>
       <p>{{expense.amount}}</p>
       <a href="/index/{{expense.id}}/edit">修改</a>
-      <a href="">刪除</a>
+      <form action="/index/{{expense.id}}/delete?_method=DELETE" method="post">
+      <button type="submit">刪除</a>
+      </form>
+      
     </div>
 
   {{/each}}
