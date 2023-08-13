@@ -5,7 +5,11 @@ const router = require("./routers/main"); //如果使用./router 只會預設尋
 const port = 3000;
 const methodOverride = require("method-override");
 
+const passport = require("passport");
 
+app.use(passport.initialize());
+
+const LocalStrategy = require("passport-local");
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", "./views");
