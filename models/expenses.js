@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Expenses.belongsTo(models.User)
+      Expenses.belongsTo(models.Category);
     }
   }
   Expenses.init(
@@ -33,10 +35,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      categoryId:{
-        type:DataTypes.INTEGER,
-        allowNull:false
-      }
+      categoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     {
       sequelize,
