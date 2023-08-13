@@ -4,9 +4,7 @@ const db = require("../models");
 const User=db.User
 const passport = require("passport");
 
-const LocalStrategy = require("passport-local");
 const { Model } = require("sequelize");
-
 
 router.get('/register',(req,res)=>{
   return res.render('register')
@@ -14,24 +12,40 @@ router.get('/register',(req,res)=>{
 
 router.post('/register',async (req,res)=>{
   const { name, username, password, confirm_password } = req.body;
-  if ( (!name || !username || !password || !confirm_password) || (password!==confirm_password) ){
-    
-    return res.render('register_fail')
+  if (!name || !username || !password || !confirm_password){
+    const message="有欄位沒填寫"
+    return res.render('register_fail',{message})
+  }if (password !== confirm_password){
+    const message = "密碼不一致";
+    return res.render("register_fail", { message });
   }
-  await User.create({name,username,password})
-  return res.redirect('login')
+  const user = await User.findOne({where:{username}})
+  if (user){
+    const message = "帳號已被使用";
+    return res.render("register_fail", { message });
+  }
+  await User.create({ name, username, password });
+  const message="註冊成功"
+  return res.render('login',{message})
 })
-
-
 
 router.get('/login',(req,res)=>{
-  res.render('login')
+  const message = req.query.message
+  return res.render('login',{message})
 })
 
-router.post('/login',(req,res)=>{
+router.post('/login',(req,res,next)=>{
   const {username, password } = req.body
-  console.log(username,password)
-  
+  console.log(username, password);
+  if (!password || !username){
+    const message="帳號密碼不能為空"
+    return res.render('login_fail',{message})
+  }
+  passport.authenticate("local", {
+    successRedirect: "/index",
+    failureRedirect: "/users/login?message='帳號或密碼錯誤'",
+  })(req,res,next)
+
 })
 
 module.exports = router

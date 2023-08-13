@@ -2,7 +2,13 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   align-items: center;
+}
+.body-container {
+  flex: 1;
+  padding: 20px;
+  /* 調整內容區域的上下間距 */
 }
 
 nav {
@@ -397,11 +403,12 @@ button:hover {
 
 
 .footer {
-  position: fixed;
+  
   bottom: 0;
   height: 60px;
   width: 100%;
   background-color: #f2f2f2;
   box-shadow: 3px -2px 4px rgba(0, 0, 0, 0.1);
-  margin-top:60px ;
+  margin-top: auto;
+    /* 將 footer 推至容器底部 */
 }

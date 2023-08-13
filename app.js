@@ -4,11 +4,19 @@ const app = express();
 const router = require("./routers/main"); //如果使用./router 只會預設尋找index.js
 const port = 3000;
 const methodOverride = require("method-override");
+const session = require("express-session");
 
-const passport = require("passport");
-
+require("dotenv").config();
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+)
+const passport = require("./config/passport");
 app.use(passport.initialize());
-
+app.use(passport.session());
 const LocalStrategy = require("passport-local");
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
