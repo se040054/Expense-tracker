@@ -55,7 +55,6 @@ router.post('/logout',(req,res,next)=>{
     if (err) { return next(err); }
     return res.redirect('/users/login');
   });
-  
 })
 
 module.exports = router

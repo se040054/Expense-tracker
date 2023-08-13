@@ -16,14 +16,14 @@
     <p class="totalAmount">{{totalAmount}}</p>
   </div>
 
-  {{#each expenses as |expense|}}
+  {{#each records as |record|}}
     <div class="expense">
-      <i class="{{expense.categoryIMG}}"></i>
-      <p>{{expense.name}}</p>
-      <p>{{expense.date}}</p>
-      <p>{{expense.amount}}</p>
-      <a href="/index/{{expense.id}}/edit"><button>修改</button></a>
-      <form action="/index/{{expense.id}}/delete?_method=DELETE" method="post">
+      <i class="{{record.categoryIMG}}"></i>
+      <p>{{record.name}}</p>
+      <p>{{record.date}}</p>
+      <p>{{record.amount}}</p>
+      <a href="/index/{{record.id}}/edit"><button>修改</button></a>
+      <form action="/index/{{record.id}}/delete?_method=DELETE" method="post">
       <button type="submit">刪除</a>
       </form>
       

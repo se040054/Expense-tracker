@@ -5,10 +5,10 @@
 
   <form action="/index/{{id}}/edit?_method=PUT" method="post">
     <label for="name">名稱
-      <input type="text" name="name" id="name" value="{{expense.name}}" />
+      <input type="text" name="name" id="name" value="{{record.name}}" />
     </label>
     <label for="date">日期
-      <input type="date" name="date" id="date" value="{{expense.date}}" />
+      <input type="date" name="date" id="date" value="{{record.date}}" />
     </label>
     <label for="categoryId">類別
       <select name="categoryId" id="categoryId">
@@ -20,13 +20,13 @@
       </select>
     </label>
     <label for="amount">金額
-      <input type="number" name="amount" id="amount" value="{{expense.amount}}">
+      <input type="number" name="amount" id="amount" value="{{record.amount}}">
     </label>
     <button type="submit"> 送出 </button>
   </form>
 </div>
 
-<div id="categoryIdValue" hidden>{{expense.categoryId}}</div>
+<div id="categoryIdValue" hidden>{{record.categoryId}}</div>
 
 <script> 
   const categoryIdValue =document.querySelector('#categoryIdValue').innerText

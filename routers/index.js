@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const db =require('../models')
-const Expenses=db.Expenses
+const Record = db.Record;
 const sequelize = require("sequelize");
 
 const CATEGORYIMG = {
@@ -14,38 +14,9 @@ const CATEGORYIMG = {
 }
 
 router.get('/',async (req,res)=>{
-  let expenses = await Expenses.findAll({
-    attributes: [
-      "id",
-      "name",
-      [sequelize.fn("DATE", sequelize.col("date")), "date"],
-      "amount",
-      "categoryId"
-    ],
-    raw: true,
-  });
-  expenses.forEach(expense => {
-    expense.categoryIMG = CATEGORYIMG[expense.categoryId];
-  });
-  const totalAmount = await Expenses.sum('amount')
-  return res.render('home',{expenses,totalAmount})
-})
-
-
-router.get('/create',(req,res)=>{
-  return res.render('create')
-})
-
-router.post('/create',async(req,res)=>{
-  const {name,date,categoryId,amount}=req.body
-  console.log(name,date,categoryId,amount)
-  await Expenses.create({name,date,categoryId,amount})
-  return res.redirect('/index')
-})
-
-router.get('/:id/edit', async (req,res)=>{
-  const id=req.params.id
-  const expense =await Expenses.findByPk(id,{
+  const userId=req.user.id
+  console.log(userId)
+  let records = await Record.findAll({
     attributes: [
       "id",
       "name",
@@ -55,20 +26,52 @@ router.get('/:id/edit', async (req,res)=>{
     ],
     raw: true,
   });
-  return res.render('edit',{expense,id})
+  records.forEach((record) => {
+    record.categoryIMG = CATEGORYIMG[record.categoryId];
+  });
+  const totalAmount = await Record.sum("amount");
+  return res.render("home", { records, totalAmount });
+})
+
+
+router.get('/create',(req,res)=>{
+  return res.render('create')
+})
+
+router.post('/create',async(req,res)=>{
+  const {name,date,categoryId,amount}=req.body
+  const userId=req.user.id
+  console.log(name,date,categoryId,amount)
+  await Record.create({ name, date, categoryId, amount, userId });
+  return res.redirect('/index')
+})
+
+router.get('/:id/edit', async (req,res)=>{
+  const id=req.params.id
+  const record = await Record.findByPk(id, {
+    attributes: [
+      "id",
+      "name",
+      [sequelize.fn("DATE", sequelize.col("date")), "date"],
+      "amount",
+      "categoryId",
+    ],
+    raw: true,
+  });
+  return res.render('edit',{record,id})
 })
 
 router.put('/:id/edit',async(req,res)=>{
   const id=req.params.id
   const {name,date,categoryId,amount}=req.body
-  await Expenses.update({name,date,categoryId,amount},{where:{id}})
+  await Record.update({ name, date, categoryId, amount }, { where: { id } });
   return res.redirect('/index')
 
 })
 
 router.delete('/:id/delete',async(req,res)=>{
   const id=req.params.id
-  await Expenses.destroy({where:{id}})
+  await Record.destroy({where:{id}})
   return res.redirect('/index')
 })
 
