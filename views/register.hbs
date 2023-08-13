@@ -1,0 +1,27 @@
+{{>back}}
+<h1>Register</h1>
+<div class="register-container">
+  <form action="/users/register" method="POST">
+    <label for="">Name
+      <input type="text" name="name">
+    </label>
+    <label for="">Username(account)
+      <input type="text" name="username">
+    </label>
+    <label for="">Password
+      <input type="password" name="password">
+    </label>
+    <label for="">Confirm Password
+      <input type="password" name="confirm_password">
+    </label>
+    <button type="submit">Register</button>
+
+  </form>
+
+</div>
+
+<div class="login-register-link">
+    Already have an account ? 
+    <div></div>
+  <a href="/users/login">Login </a>
+</div>

@@ -2,9 +2,11 @@
 const express = require("express");
 const router = express.Router();
 const index = require('./index')
+const user = require('./user')
+
 
 router.use('/index',index)
-
+router.use('/users',user)
 router.get('/',(req,res)=>{
   return res.redirect('/index')
 })

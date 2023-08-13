@@ -246,7 +246,159 @@ button:hover {
   display: none;
 }
 
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.register-container form {
+  display: grid;
+  grid-template-columns: max-content auto;
+  row-gap: 15px;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+}
+
+.register-container label {
+  grid-column: 1 / 2;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.register-container input[type="text"],
+.register-container input[type="password"] {
+  grid-column: 2 / 3;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-container button {
+  grid-column: span 2;
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.register-container button:hover {
+  background-color: darkorange;
+}
+
+.back-link {
+  position: fixed;
+  top: 50%;
+  left: 100px;
+  transform: translateY(-50%);
+}
+
+.back {
+  display: inline-block;
+  font-size: 18px;
+  padding: 10px;
+  background-color: #1b72cf;
+  color: white;
+  text-decoration: none;
+  border-radius: 20%;
+  transition: background-color 0.3s;
+}
+
+.back:hover {
+  background-color: #16487d;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-container form {
+  display: grid;
+  grid-template-columns: max-content auto;
+  row-gap: 15px;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+}
+
+.login-container label {
+  grid-column: 1 / 2;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  grid-column: 2 / 3;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-container button {
+  grid-column: span 2;
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.login-container button:hover {
+  background-color: darkorange;
+}
+
+/* 登入/註冊連結的部分 */
+.login-register-link {
+  position: fixed;
+  top: 50%;
+  right: 150px;
+  transform: translateY(-50%);
+  text-align: right;
+  font-size: 28px;
+  color: #000000;
+}
+
+.login-register-link a {
+  
+  color: rgb(30, 81, 235);
+}
+
+
 .footer {
+  position: fixed;
+  bottom: 0;
   height: 60px;
   width: 100%;
   background-color: #f2f2f2;
