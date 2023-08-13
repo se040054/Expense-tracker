@@ -15,6 +15,7 @@ const CATEGORYIMG = {
 
 router.get('/',async (req,res)=>{
   const userId=req.user.id
+
   console.log(userId)
   let records = await Record.findAll({
     attributes: [
@@ -23,13 +24,13 @@ router.get('/',async (req,res)=>{
       [sequelize.fn("DATE", sequelize.col("date")), "date"],
       "amount",
       "categoryId",
-    ],
+    ],where:{userId},
     raw: true,
   });
   records.forEach((record) => {
     record.categoryIMG = CATEGORYIMG[record.categoryId];
   });
-  const totalAmount = await Record.sum("amount");
+  const totalAmount = await Record.sum("amount",{where:{userId}});
   return res.render("home", { records, totalAmount });
 })
 
@@ -48,6 +49,7 @@ router.post('/create',async(req,res)=>{
 
 router.get('/:id/edit', async (req,res)=>{
   const id=req.params.id
+  const userId=req.user.id
   const record = await Record.findByPk(id, {
     attributes: [
       "id",
@@ -55,23 +57,51 @@ router.get('/:id/edit', async (req,res)=>{
       [sequelize.fn("DATE", sequelize.col("date")), "date"],
       "amount",
       "categoryId",
+      "userId"
     ],
     raw: true,
-  });
+  }).catch(()=>{
+    return res.redirect('/')
+  })
+  if (!record){
+    return res.redirect('/')
+  }
+  if (record.userId !== userId){
+    return res.render('invalid')
+  }
   return res.render('edit',{record,id})
 })
 
 router.put('/:id/edit',async(req,res)=>{
   const id=req.params.id
   const {name,date,categoryId,amount}=req.body
-  await Record.update({ name, date, categoryId, amount }, { where: { id } });
+  const userId=req.user.id
+  const record = await Record.findByPk(id);
+  if (!record){
+    res.redirect('/')
+  }
+  if (record.userId!==userId){
+    res.render('invalid')
+  }
+  await record.update(
+    { name, date, categoryId, amount, userId },
+    { where: { id } }
+  );
   return res.redirect('/index')
 
 })
 
 router.delete('/:id/delete',async(req,res)=>{
   const id=req.params.id
-  await Record.destroy({where:{id}})
+  const userId = req.user.id;
+  const record = await Record.findByPk(id);
+  if (!record) {
+    res.redirect("/");
+  }
+  if (record.userId !== userId) {
+    res.render("invalid");
+  }
+  await record.destroy({ where: { id } });
   return res.redirect('/index')
 })
 
