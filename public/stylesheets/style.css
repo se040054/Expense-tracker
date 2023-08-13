@@ -21,6 +21,12 @@ nav {
   font-family: Arial, sans-serif;
 }
 
+.logout-button{
+  position: absolute;
+  top:0;
+  right: 50px;
+}
+
 .expenses-container {
   display: flex;
   flex-direction: column;

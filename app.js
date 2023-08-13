@@ -17,7 +17,6 @@ app.use(
 const passport = require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
-const LocalStrategy = require("passport-local");
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", "./views");

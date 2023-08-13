@@ -33,7 +33,10 @@ router.get('/login',(req,res)=>{
   const message = req.query.message
   return res.render('login',{message})
 })
-
+router.get('/login_fail',(req,res)=>{
+  const message = req.query.message;
+  return res.render("login_fail", { message });
+})
 router.post('/login',(req,res,next)=>{
   const {username, password } = req.body
   console.log(username, password);
@@ -43,9 +46,16 @@ router.post('/login',(req,res,next)=>{
   }
   passport.authenticate("local", {
     successRedirect: "/index",
-    failureRedirect: "/users/login?message='帳號或密碼錯誤'",
+    failureRedirect: "/users/login_fail?message=帳號或密碼錯誤",
   })(req,res,next)
+})
 
+router.post('/logout',(req,res,next)=>{
+  req.logout((err)=>{
+    if (err) { return next(err); }
+    return res.redirect('/users/login');
+  });
+  
 })
 
 module.exports = router
