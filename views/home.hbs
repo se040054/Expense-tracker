@@ -13,7 +13,9 @@
     </select>
   </label>
   </form>
-
+  {{#if select_category}}
+  <a class="reset" href="/index">取消篩選</a>
+  {{/if}}
 
   <div class="totalAmount-container">
     <h3> 總金額 : </h3>
@@ -49,14 +51,11 @@
   const initial_selectValue =document.querySelector('#initial_select').innerHTML
   const form = document.querySelector('.form')
   if (initial_selectValue){
-    console.log(initial_selectValue)
     select.value = initial_selectValue
   }
   console.log(initial_selectValue)
   select.addEventListener('change',function (event){
     form.submit()
   })
-
-
 
 </script>
