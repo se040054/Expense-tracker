@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
     "migrate": "npx sequelize db:migrate",
-    "ca-seed": "npx sequelize db:seed --seed 20230813132524-category-seeder"
+    "seed": "npx sequelize db:seed --seed 20230813132524-category-seeder && npx sequelize db:seed --seed 20230814083631-record-seeders",
+    "seed-undo": "npx sequelize db:seed:undo --seed 20230814083631-record-seeders && npx sequelize db:seed:undo --seed 20230813132524-category-seeder"
   },
   "keywords": [],
   "author": "",
