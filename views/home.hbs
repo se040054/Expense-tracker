@@ -1,8 +1,10 @@
 {{>logout}}
 <div class="expenses-container">
 
-  <label for=" " style="margin:30px">選擇分類
-    <select name="select_category" id="select_category">
+  <form class="form" action="/index" method="get">
+    <label for=" " style="margin:30px">選擇分類
+    <select name="select_category" id="select_category" >
+      <option value="" disabled selected> 篩選類別 </option>
       <option value="1">居家</option>
       <option value="2">交通</option>
       <option value="3">休閒</option>
@@ -10,6 +12,8 @@
       <option value="5">其他</option>
     </select>
   </label>
+  </form>
+
 
   <div class="totalAmount-container">
     <h3> 總金額 : </h3>
@@ -30,5 +34,29 @@
     </div>
 
   {{/each}}
+
+{{#if message}}
+  <h1>{{message}}</h1>
+{{/if}}
+
   <button onclick="location.href='/index/create'">新增支出</button>
 </div>
+
+<div id="initial_select" hidden>{{select_category}}</div>
+
+<script>
+  const select = document.querySelector('#select_category')
+  const initial_selectValue =document.querySelector('#initial_select').innerHTML
+  const form = document.querySelector('.form')
+  if (initial_selectValue){
+    console.log(initial_selectValue)
+    select.value = initial_selectValue
+  }
+  console.log(initial_selectValue)
+  select.addEventListener('change',function (event){
+    form.submit()
+  })
+
+
+
+</script>

@@ -15,23 +15,55 @@ const CATEGORYIMG = {
 
 router.get('/',async (req,res)=>{
   const userId=req.user.id
+  const select_category = req.query.select_category;
+  let totalAmount;
+  let records;
+  let message;
+  if (select_category){
+    records = await Record.findAll({
+      attributes: [
+        "id",
+        "name",
+        [sequelize.fn("DATE", sequelize.col("date")), "date"],
+        "amount",
+        "categoryId",
+      ],
+      where: { userId: userId, categoryId: select_category },
+      raw: true,
+    }).catch((error)=>{
+      console.log(error)
+      return res.redirect('back')
+    })
+    totalAmount = await Record.sum("amount", { where: { userId , categoryId:select_category } });
+  }else{
+    records = await Record.findAll({
+      attributes: [
+        "id",
+        "name",
+        [sequelize.fn("DATE", sequelize.col("date")), "date"],
+        "amount",
+        "categoryId",
+      ],
+      where: { userId },
+      raw: true,
+    }).catch((error) => {
+      console.log(error);
+      return res.redirect("back");
+    });
+  totalAmount = await Record.sum("amount", { where: { userId } });
+  }
+   
+  if (records.length===0){
+    totalAmount=0
+    message='這裡沒有項目 '
+   return res.render("home", { totalAmount, message, select_category });
+  }
 
-  console.log(userId)
-  let records = await Record.findAll({
-    attributes: [
-      "id",
-      "name",
-      [sequelize.fn("DATE", sequelize.col("date")), "date"],
-      "amount",
-      "categoryId",
-    ],where:{userId},
-    raw: true,
-  });
   records.forEach((record) => {
     record.categoryIMG = CATEGORYIMG[record.categoryId];
   });
-  const totalAmount = await Record.sum("amount",{where:{userId}});
-  return res.render("home", { records, totalAmount });
+  console.log(select_category)
+  return res.render("home", { records, totalAmount,select_category });
 })
 
 
