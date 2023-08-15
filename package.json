@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node app.js",
+    "start": "node app.js",
     "dev": "nodemon app.js",
     "migrate": "npx sequelize db:migrate",
     "seed": "npx sequelize db:seed --seed 20230813132524-category-seeder && npx sequelize db:seed --seed 20230814083631-record-seeders",
-    "seed-undo": "npx sequelize db:seed:undo --seed 20230814083631-record-seeders && npx sequelize db:seed:undo --seed 20230813132524-category-seeder"
+    "seed-undo": "npx sequelize db:seed:undo --seed 20230814083631-record-seeders && npx sequelize db:seed:undo --seed 20230813132524-category-seeder",
+    "dbmigrate": "npx sequelize db:migrate && npx sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
