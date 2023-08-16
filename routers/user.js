@@ -19,7 +19,10 @@ router.post('/register',async (req,res)=>{
     const message = "密碼不一致";
     return res.render("register_fail", { message });
   }
-  const user = await User.findOne({where:{username}})
+  const user = await User.findOne({ where: { username } }).catch((error) => {
+    console.log(error);
+    return res.redirect("back");
+  });
   if (user){
     const message = "帳號已被使用";
     return res.render("register_fail", { message });

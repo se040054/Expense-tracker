@@ -415,8 +415,8 @@ button:hover {
   
   .reset {
     position: absolute;
-    top:155px;
-    left:900px;
+    top: 9.5em;
+    left:126vh;
     margin-left: 10px;
     vertical-align: middle;
   }
